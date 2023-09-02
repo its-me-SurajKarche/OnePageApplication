@@ -23,3 +23,34 @@ menu_item.forEach((item) => {
 		mobile_menu.classList.toggle('active');
 	});
 });
+{/* <script> */}
+  const typedElement = document.getElementById('typedText');
+  const jobTitles = ['WEB DEVELOPER', 'FRONTEND DEVELOPER', 'BACKEND DEVELOPER'];
+  const typeSpeed = 100; // Adjust typing speed as needed
+
+  let currentJobIndex = 0;
+  let currentCharacterIndex = 0;
+
+  function typeNextCharacter() {
+    if (currentCharacterIndex < jobTitles[currentJobIndex].length) {
+      typedElement.textContent += jobTitles[currentJobIndex].charAt(currentCharacterIndex);
+      currentCharacterIndex++;
+      setTimeout(typeNextCharacter, typeSpeed);
+    } else {
+      setTimeout(deleteText, 1500); // Wait before deleting text
+    }
+  }
+
+  function deleteText() {
+    if (typedElement.textContent.length > 0) {
+      typedElement.textContent = typedElement.textContent.slice(0, -1);
+      setTimeout(deleteText, typeSpeed / 2);
+    } else {
+      currentJobIndex = (currentJobIndex + 1) % jobTitles.length;
+      currentCharacterIndex = 0;
+      setTimeout(typeNextCharacter, typeSpeed); // Start typing the next job title
+    }
+  }
+
+  typeNextCharacter(); // Start the typing animation
+// </script>
